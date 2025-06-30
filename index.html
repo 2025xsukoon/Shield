@@ -3,731 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[Your Group Name] Secure Escrow</title>
-    <!-- AOS (Animate On Scroll) Library for scroll-triggered animations -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <title>Shield Escrow - Safe & Secure Transactions</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* General Styling */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f7f6;
-            color: #333;
-            overflow-x: hidden; /* Prevent horizontal scroll from animations */
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            background-color: #0d0d1e; /* Dark background inspired by the image */
+            color: #e0e0e0; /* Light text color */
         }
-
-        /* Header and Navigation */
-        .main-header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+        /* Custom gradient for the button */
+        .btn-gradient {
+            background-image: linear-gradient(to right, #6a0dad, #8a2be2);
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.4);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(138, 43, 226, 0.6);
         }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            animation: fadeInScale 1s ease-out; /* Animation on logo */
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-links li {
-            margin-left: 25px;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            position: relative;
-            padding-bottom: 5px;
-            transition: color 0.3s ease;
-        }
-
-        /* Animated Underline for Nav Links */
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            background: #3498db;
-            left: 0;
-            bottom: 0;
-            transition: width 0.3s ease-out;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-links a:hover {
-            color: #3498db;
-        }
-
-        /* Hero Section */
-        .hero-section {
-            background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
-            color: white;
-            text-align: center;
-            padding: 100px 20px;
-            position: relative;
-            overflow: hidden; /* For background animations */
-            min-height: 500px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            z-index: 2; /* Above background animations */
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-        }
-
-        .hero-content p {
-            font-size: 1.3rem;
-            margin-bottom: 40px;
-        }
-
-        .btn {
-            background-color: #2ecc71;
-            color: white;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-
-        .btn:hover {
-            background-color: #27ae60;
-            transform: translateY(-5px); /* Lift button on hover */
-        }
-
-        /* Background Animation for Hero Section (Example: Floating bubbles) */
-        .bg-animation-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .bg-animation-container::before,
-        .bg-animation-container::after {
-            content: '';
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            animation: floatBubble 15s infinite ease-in-out alternate;
-        }
-
-        .bg-animation-container::before {
-            width: 150px;
-            height: 150px;
-            top: 10%;
-            left: 15%;
-            animation-delay: 0s;
-        }
-
-        .bg-animation-container::after {
-            width: 100px;
-            height: 100px;
-            bottom: 20%;
-            right: 10%;
-            animation-delay: 5s;
-        }
-
-        @keyframes floatBubble {
-            0% { transform: translate(0, 0) scale(1); opacity: 0.8; }
-            50% { transform: translate(20px, -20px) scale(1.1); opacity: 1; }
-            100% { transform: translate(0, 0) scale(1); opacity: 0.8; }
-        }
-
-
-        /* General Section Styling */
-        section {
-            padding: 80px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        section:nth-of-type(even) {
-            background-color: #eef1f0;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            color: #2c3e50;
-            position: relative;
-        }
-
-        h2::after {
-            content: '';
-            position: absolute;
-            width: 60px;
-            height: 4px;
-            background: #3498db;
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: -10px;
-            border-radius: 2px;
-        }
-
-        /* About Section */
-        .about-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            align-items: center;
-        }
-
-        .about-content p {
-            max-width: 600px;
-            line-height: 1.8;
-            text-align: left; /* Keep text readable */
-        }
-
-        .stat-boxes {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .stat-box {
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .stat-box:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-        }
-
-        .stat-box h3 {
-            font-size: 2.2rem;
-            color: #3498db;
-            margin-bottom: 10px;
-        }
-
-        .stat-box p {
-            font-size: 1.1rem;
-            color: #555;
-        }
-
-        /* How It Works Section */
-        .steps-container {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 40px;
-        }
-
-        .step-item {
-            flex: 1;
-            min-width: 200px;
-            max-width: 280px;
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: background-color 0.3s ease;
-        }
-
-        .step-item:hover {
-            background-color: #e0f2f7;
-        }
-
-        .step-item .icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            /* Animation applied by JS or AOS. BounceIn below is an example. */
-        }
-
-        @keyframes bounceIn {
-            0%, 20%, 40%, 60%, 80%, 100% {
-                -webkit-transition-timing-function: cubic-bezier(0.215, .61, .355, 1);
-                transition-timing-function: cubic-bezier(0.215, .61, .355, 1);
-            }
-            0% {
-                opacity: 0;
-                -webkit-transform: scale3d(.3, .3, .3);
-                transform: scale3d(.3, .3, .3);
-            }
-            20% {
-                -webkit-transform: scale3d(1.1, 1.1, 1.1);
-                transform: scale3d(1.1, 1.1, 1.1);
-            }
-            40% {
-                -webkit-transform: scale3d(.9, .9, .9);
-                transform: scale3d(.9, .9, .9);
-            }
-            60% {
-                opacity: 1;
-                -webkit-transform: scale3d(1.03, 1.03, 1.03);
-                transform: scale3d(1.03, 1.03, 1.03);
-            }
-            80% {
-                -webkit-transform: scale3d(.97, .97, .97);
-                transform: scale3d(.97, .97, .97);
-            }
-            100% {
-                opacity: 1;
-                -webkit-transform: scale3d(1, 1, 1);
-                transform: scale3d(1, 1, 1);
-            }
-        }
-
-
-        /* Services Section */
-        .service-cards-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-        }
-
-        .service-card {
-            background-color: #fff;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            text-align: left;
-            flex: 1;
-            min-width: 280px;
-            max-width: 450px;
-            transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
-            border: 2px solid transparent; /* For hover effect */
-        }
-
-        .service-card:hover {
-            background-color: #f7f7f7;
-            border-color: #3498db;
-            transform: translateY(-5px);
-        }
-
-        .service-card h3 {
-            color: #3498db;
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-        }
-
-        .service-card p {
-            line-height: 1.6;
-            color: #555;
-        }
-
-        /* Pricing Section */
-        .pricing-card {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            display: inline-block; /* To center it */
-            min-width: 300px;
-            transition: transform 0.3s ease;
-        }
-
-        .pricing-card:hover {
-            transform: scale(1.03);
-        }
-
-        .pricing-card h3 {
-            font-size: 2rem;
-            color: #2c3e50;
-            margin-bottom: 20px;
-        }
-
-        .pricing-card p {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            color: #555;
-        }
-
-        .pricing-card strong {
-            color: #e74c3c; /* Highlight limit */
-        }
-
-        /* Contact Section */
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            max-width: 500px;
-            margin: 0 auto;
-            text-align: left;
-        }
-
-        form input,
-        form textarea {
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        form input:focus,
-        form textarea:focus {
-            border-color: #3498db;
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
-            outline: none;
-        }
-
-        .animated-btn { /* Apply to contact form button as well */
-            background-color: #3498db;
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            width: fit-content; /* Make button fit content */
-            align-self: center; /* Center the button in the form */
-        }
-
-        .animated-btn:hover {
-            background-color: #2980b9;
-            transform: translateY(-3px);
-        }
-
-        /* Footer */
-        .main-footer {
-            background-color: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 30px 20px;
-            font-size: 0.9rem;
-        }
-
-        /* Keyframe Animations */
-        @keyframes fadeInScale {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-            }
-            .nav-links {
-                margin-top: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .nav-links li {
-                margin: 0 10px 10px 10px;
-            }
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-            h2 {
-                font-size: 2rem;
-            }
-            .steps-container, .service-cards-container, .about-content {
-                flex-direction: column;
-                align-items: center;
-            }
-            .step-item, .service-card, .stat-box, .pricing-card {
-                max-width: 90%;
-                width: 100%;
-            }
+        .section-gradient-bg {
+             background: linear-gradient(180deg, rgba(13,13,30,1) 0%, rgba(13,13,30,0.8) 100%);
+             /* Added fallback for a consistent dark tone */
         }
     </style>
 </head>
-<body>
-    <header class="main-header">
-        <nav class="navbar">
-            <div class="logo">YourGroupEscrow</div>
-            <ul class="nav-links">
-                <li><a href="#about" class="animated-link">About Us</a></li>
-                <li><a href="#how-it-works" class="animated-link">How it Works</a></li>
-                <li><a href="#services" class="animated-link">Services</a></li>
-                <li><a href="#pricing" class="animated-link">Pricing</a></li>
-                <li><a href="#contact" class="animated-link">Contact</a></li>
-            </ul>
-        </nav>
+<body class="antialiased">
+
+    <!-- Header Section with Logo, Name, and Tagline -->
+    <header class="relative flex flex-col items-center justify-center min-h-screen text-center p-6 bg-cover bg-center" style="background-image: url('https://placehold.co/1920x1080/0d0d1e/e0e0e0?text=Abstract+Secure+Background');">
+        <!-- Overlay for better text readability -->
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="relative z-10 flex flex-col items-center">
+            <!-- Logo Placeholder -->
+            <div class="mb-4">
+                <img src="https://placehold.co/100x100/8a2be2/ffffff?text=LOGO" alt="Shield Escrow Logo" class="rounded-full shadow-lg">
+            </div>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-2 leading-tight">Shield Escrow</h1>
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-medium text-purple-300">Safe and Secure Transactions</h2>
+
+            <p class="mt-8 max-w-2xl text-lg sm:text-xl text-gray-200">
+                Tired of the constant worry when making online deals? In a world where scams and fraud lurk around every corner,
+                <strong class="text-purple-400">Shield Escrow</strong> stands as your impenetrable shield. We ensure every transaction is
+                <strong class="text-purple-400">safe and secure, every time.</strong>
+            </p>
+            <p class="mt-4 max-w-2xl text-lg sm:text-xl text-gray-200">
+                Whether you're buying or selling high-value goods, services, or digital assets, our platform provides ultimate peace of mind.
+                We act as a trusted, neutral third party, holding funds securely until both parties have fulfilled their agreed-upon terms.
+                No more sleepless nights wondering if your deal will go south.
+            </p>
+
+            <!-- Call to Action for Header -->
+            <a href="YOUR_TELEGRAM_GROUP_LINK_HERE" target="_blank" rel="noopener noreferrer"
+               class="mt-10 px-8 py-4 rounded-full text-white text-lg font-semibold btn-gradient animate-bounce-slow">
+                Join Our Secure Telegram Group!
+            </a>
+        </div>
     </header>
 
-    <section id="hero" class="hero-section">
-        <div class="hero-content" data-aos="fade-up" data-aos-delay="100">
-            <h1>Secure Your Deals, Build Trust.</h1>
-            <p>Your trusted escrow partner for seamless Telegram transactions.</p>
-            <a href="#how-it-works" class="btn animated-btn">Learn More</a>
-        </div>
-        <!-- Animated background elements (e.g., floating shapes, particles) -->
-        <div class="bg-animation-container"></div>
-    </section>
-
-    <section id="about" class="about-section">
-        <h2 data-aos="fade-right">About Us</h2>
-        <div class="about-content">
-            <p data-aos="fade-left" data-aos-delay="200">
-                We are a dedicated group that originated from the Telegram community, passionate about fostering trust and security in online transactions. Recognizing the need for a reliable third-party intermediary, we've developed this escrow service to protect both buyers and sellers, ensuring fair and transparent dealings. Our mission is to make your transactions safe, simple, and worry-free.
-            </p>
-            <div class="stat-boxes">
-                <div class="stat-box" data-aos="zoom-in" data-aos-delay="300">
-                    <h3><span class="count-num" data-target="5000">0</span>+</h3>
-                    <p>Happy Transactions</p>
-                </div>
-                <div class="stat-box" data-aos="zoom-in" data-aos-delay="400">
-                    <h3><span class="count-num" data-target="24">0</span>/<span class="count-num" data-target="7">0</span></h3>
-                    <p>Support Availability</p>
-                </div>
+    <!-- Why Choose Shield Escrow Section -->
+    <section class="py-16 px-6 sm:px-10 lg:px-20 bg-gray-900 text-center">
+        <h3 class="text-3xl sm:text-4xl font-bold text-white mb-12">Why Choose Shield Escrow?</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
+            <!-- Feature 1: Ironclad Security -->
+            <div class="bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <div class="text-purple-400 text-5xl mb-4">🔒</div> <!-- Icon -->
+                <h4 class="text-xl font-semibold text-white mb-3">Ironclad Security</h4>
+                <p class="text-gray-300">Our advanced protocols protect your funds and data from start to finish. We're built to keep fraudsters out.</p>
+            </div>
+            <!-- Feature 2: Fraud Prevention -->
+            <div class="bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <div class="text-purple-400 text-5xl mb-4">🛡️</div> <!-- Icon -->
+                <h4 class="text-xl font-semibold text-white mb-3">Fraud Prevention</h4>
+                <p class="text-gray-300">We actively verify identities and terms, preventing scams before they can even begin.</p>
+            </div>
+            <!-- Feature 3: Complete Transparency -->
+            <div class="bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <div class="text-purple-400 text-5xl mb-4">📊</div> <!-- Icon -->
+                <h4 class="text-xl font-semibold text-white mb-3">Complete Transparency</h4>
+                <p class="text-gray-300">Track your transaction's progress in real-time, every step of the way. You're always in the loop.</p>
+            </div>
+            <!-- Feature 4: Simple & Intuitive -->
+            <div class="bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <div class="text-purple-400 text-5xl mb-4">✨</div> <!-- Icon -->
+                <h4 class="text-xl font-semibold text-white mb-3">Simple & Intuitive</h4>
+                <p class="text-gray-300">Our user-friendly platform makes secure transactions accessible to everyone, no complex jargon.</p>
+            </div>
+            <!-- Feature 5: Global Reach, Local Trust -->
+            <div class="bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <div class="text-purple-400 text-5xl mb-4">🌍</div> <!-- Icon -->
+                <h4 class="text-xl font-semibold text-white mb-3">Global Reach, Local Trust</h4>
+                <p class="text-gray-300">Secure your deals, whether you're transacting with someone across the street or across continents.</p>
             </div>
         </div>
     </section>
 
-    <section id="how-it-works" class="how-it-works-section">
-        <h2 data-aos="fade-up">How Our Escrow Works</h2>
-        <div class="steps-container">
-            <div class="step-item" data-aos="fade-up" data-aos-delay="100">
-                <div class="icon">✨</div>
-                <h3>1. Agree on Terms</h3>
-                <p>Buyer and Seller define and agree upon the transaction terms, including details of the item/service and payment.</p>
-            </div>
-            <div class="step-item" data-aos="fade-up" data-aos-delay="200">
-                <div class="icon">💰</div>
-                <h3>2. Fund Escrow</h3>
-                <p>The Buyer deposits the agreed-upon funds into our secure escrow account. We verify the payment promptly.</p>
-            </div>
-            <div class="step-item" data-aos="fade-up" data-aos-delay="300">
-                <div class="icon">📦</div>
-                <h3>3. Deliver Item/Service</h3>
-                <p>Upon payment verification, the Seller delivers the item or provides the service to the Buyer as agreed.</p>
-            </div>
-            <div class="step-item" data-aos="fade-up" data-aos-delay="400">
-                <div class="icon">✅</div>
-                <h3>4. Verify & Release</h3>
-                <p>The Buyer inspects and accepts the item/service. Once verified, we release the funds to the Seller.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="services" class="services-section">
-        <h2 data-aos="fade-right">Our Services</h2>
-        <div class="service-cards-container">
-            <div class="service-card" data-aos="flip-left">
-                <h3>Digital Assets</h3>
-                <p>Secure transactions for NFTs, game accounts, software licenses, e-books, and other digital goods.</p>
-            </div>
-            <div class="service-card" data-aos="flip-right" data-aos-delay="100">
-                <h3>Physical Goods</h3>
-                <p>Facilitate safe exchange for electronics, collectibles, merchandise, and other tangible items.</p>
-            </div>
-            <div class="service-card" data-aos="flip-left" data-aos-delay="200">
-                <h3>Freelance Services</h3>
-                <p>Ensure payment for completed work, including graphic design, web development, content writing, and more.</p>
-            </div>
-            <div class="service-card" data-aos="flip-right" data-aos-delay="300">
-                <h3>Custom Deals</h3>
-                <p>Have a unique transaction? Contact us to discuss how our escrow can support your specific needs.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="pricing" class="pricing-section">
-        <h2 data-aos="fade-up">Pricing & Limits</h2>
-        <div class="pricing-card" data-aos="zoom-in">
-            <h3>Standard Escrow Service</h3>
-            <p>Our fee is a flat **5%** of the transaction value, with a minimum fee of **₹50**.</p>
-            <p>
-                **Maximum Escrow Limit:**
-                <strong style="color: #e74c3c; font-size: 1.5rem;">₹50,000</strong> per transaction.
-            </p>
-            <small>
-                For transactions exceeding ₹50,000, please contact us directly. Larger amounts may require additional verification and custom arrangements, and are handled on a case-by-case basis. Our team will guide you through the process to ensure compliance and security for high-value deals.
-            </small>
-        </div>
-    </section>
-
-    <section id="contact" class="contact-section">
-        <h2 data-aos="fade-left">Get in Touch</h2>
-        <p data-aos="fade-right">Have questions or need assistance with a deal? Reach out to us!</p>
-        <form data-aos="fade-up">
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea placeholder="Your Message" rows="5" required></textarea>
-            <a href="https://t.me/YourTelegramGroupContact" target="_blank" class="animated-btn" style="text-align: center; display: inline-block;">Message Us on Telegram</a>
-            <p>Or send us an email at: <a href="mailto:support@yourgrouptg.com" style="color: #3498db; text-decoration: underline;">support@yourgrouptg.com</a></p>
-        </form>
-    </section>
-
-    <footer class="main-footer">
-        <p>&copy; 2025 [Your Group Name] Escrow. All rights reserved.</p>
-        <p>
-            Disclaimer: This service acts as a neutral third-party escrow agent. We are not a licensed bank or financial institution. Users are advised to review our full Terms and Conditions.
+    <!-- Confidently Complete Any Transaction Section -->
+    <section class="py-16 px-6 sm:px-10 lg:px-20 text-center section-gradient-bg">
+        <h3 class="text-3xl sm:text-4xl font-bold text-white mb-6">Confidently Complete Any Transaction</h3>
+        <p class="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto mb-10">
+            Stop risking your hard-earned money and valuable assets. With Shield Escrow, you can confidently complete any transaction,
+            knowing your interests are always protected. Join a community that values security as much as you do.
         </p>
+        <a href="YOUR_TELEGRAM_GROUP_LINK_HERE" target="_blank" rel="noopener noreferrer"
+           class="px-8 py-4 rounded-full text-white text-lg font-semibold btn-gradient">
+            Join Our Secure Telegram Group!
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 text-center text-gray-500 text-sm">
+        <p>&copy; 2025 Shield Escrow. All rights reserved.</p>
     </footer>
 
-    <!-- AOS (Animate On Scroll) JavaScript -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        // Initialize AOS library for scroll animations
-        AOS.init({
-            duration: 1000, // animation duration
-            once: true // whether animation should happen only once - default
-        });
-
-        // JavaScript for counter animation
-        function animateNumbers() {
-            document.querySelectorAll('.count-num').forEach(stat => {
-                const target = parseInt(stat.dataset.target);
-                let current = 0;
-                const duration = 1500; // milliseconds
-                const increment = target / (duration / 10); // Adjust speed
-
-                const updateCounter = () => {
-                    current += increment;
-                    if (current < target) {
-                        stat.textContent = Math.ceil(current);
-                        requestAnimationFrame(updateCounter);
-                    } else {
-                        stat.textContent = target;
-                    }
-                };
-                updateCounter();
-            });
-        }
-
-        // Use Intersection Observer to trigger number animation when section is in view
-        const aboutSection = document.querySelector('.about-section');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !aboutSection.classList.contains('animated')) {
-                    animateNumbers();
-                    aboutSection.classList.add('animated'); // Add class to prevent re-animation
-                }
-            });
-        }, { threshold: 0.5 }); // Trigger when 50% of the section is visible
-
-        if (aboutSection) {
-            observer.observe(aboutSection);
-        }
-
-        // Simple Parallax Effect for Hero Section
-        document.addEventListener('scroll', function() {
-            const heroContent = document.querySelector('.hero-content');
-            const bgAnimationContainer = document.querySelector('.bg-animation-container');
-            const scrollPosition = window.pageYOffset;
-
-            // Move hero content slightly slower on scroll
-            heroContent.style.transform = `translateY(${scrollPosition * 0.25}px)`;
-            // Move background elements even slower for a layered effect
-            bgAnimationContainer.style.transform = `translateY(${scrollPosition * 0.1}px)`;
-        });
-
-        // IMPORTANT: Custom alert/modal system (instead of alert())
-        function showCustomAlert(message) {
-            const alertBox = document.createElement('div');
-            alertBox.style.cssText = `
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                background-color: white;
-                padding: 25px 40px;
-                border-radius: 10px;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-                z-index: 2000;
-                text-align: center;
-                max-width: 90%;
-                font-size: 1.1rem;
-                color: #333;
-                border: 2px solid #3498db;
-                animation: fadeInPop 0.3s ease-out forwards;
-            `;
-            alertBox.innerHTML = `
-                <p>${message}</p>
-                <button style="
-                    background-color: #3498db;
-                    color: white;
-                    padding: 10px 20px;
-                    border: none;
-                    border-radius: 5px;
-                    cursor: pointer;
-                    margin-top: 20px;
-                    font-size: 1rem;
-                ">OK</button>
-            `;
-            document.body.appendChild(alertBox);
-
-            alertBox.querySelector('button').addEventListener('click', () => {
-                alertBox.style.animation = 'fadeOutShrink 0.3s ease-in forwards';
-                alertBox.addEventListener('animationend', () => alertBox.remove());
-            });
-
-            // Keyframes for the custom alert
-            const styleSheet = document.createElement('style');
-            styleSheet.innerHTML = `
-                @keyframes fadeInPop {
-                    from { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-                    to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-                }
-                @keyframes fadeOutShrink {
-                    from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-                    to { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-                }
-            `;
-            document.head.appendChild(styleSheet);
-        }
-
-        // Replace alert() with showCustomAlert()
-        document.querySelectorAll('.stat-box').forEach(box => {
-            box.addEventListener('click', () => {
-                showCustomAlert('You clicked on a statistic! We are constantly updating our numbers.');
-            });
-        });
-
-        // Handle form submission (prevent default and show alert)
-        document.querySelector('.contact-section form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent actual form submission
-            showCustomAlert('Thank you for your message! We will get back to you soon.');
-            this.reset(); // Clear the form fields
-        });
-
-    </script>
 </body>
 </html>
 
